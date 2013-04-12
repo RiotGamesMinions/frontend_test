@@ -1,0 +1,64 @@
+body {
+	background: #000 url(../img/bg_final.jpg) no-repeat center top;
+	margin: 0;
+	padding: 0;
+	font-family: Arial,sans-serif;
+	font-size: 15px;
+	color: #CCC;
+}
+
+a, a:visited {
+	color: #EE2E24;
+	text-decoration: none;
+}
+
+#headwrap {
+	background: #000 url(../img/bg-header.jpg) no-repeat center top;
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.head {
+	background: url(../img/bg-nav.jpg) no-repeat center;
+	height: 112px;
+	text-align: center;
+	margin: 0 auto;
+	width: 1000px;
+}
+
+.logo {
+	background: url(../img/logo.jpg) no-repeat;
+	height: 112px;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	width: 200px;
+	margin: 0 auto;
+}
+
+#content {
+	background-color: #131313;
+	box-shadow: 0px 16px 20px 6px #000000;
+	-moz-box-shadow: 0px 16px 20px 6px #000000;
+	-webkit-box-shadow: 0px 16px 20px 6px #000000;
+	filter: progid:DXImageTransform.Microsoft.Shadow(strength= 16,direction = 180,color = '#000000');
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(strength = 16,Direction = 180,Color = '#000000')";
+	margin: 0 auto 70px auto;
+	padding: 40px 0 0;
+	position: relative;
+	width: 1000px;
+	padding: 40px 25px;
+}
+
+h1 {
+	font-family: Arial,sans-serif;
+	letter-spacing: -6px;
+	font-size: 72px;
+	line-height: 58px;
+	margin: 0 0 18px;
+	color: #fff;
+}
+
+span.red {
+	color: #DC291E;
+}
