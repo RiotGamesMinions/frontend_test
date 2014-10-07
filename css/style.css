@@ -134,3 +134,47 @@ figure:nth-child(1) {
   -webkit-animation-delay: 18s;
   animation-delay: 18s;
 }
+
+#container:before, #container:after {
+  content: '';
+  display: table;
+}
+#container:after {
+  clear: both;
+}
+
+.tab {
+  max-width: 60%;
+  position: relative;
+}
+.tab h3 {
+  border: 1px solid #444;
+  color: #444;
+  cursor: pointer;
+  float: left;
+  margin: 0;
+  padding: 3px 8px;
+}
+.tab h3:hover, .tab h3.active {
+  border: 2px solid #fff;
+  border-width: 2px 2px 0;
+  color: #fff;
+  margin-top: -1px;
+  padding: 3px 7px;
+}
+.tab p {
+  border: 1px solid #555;
+  position: absolute;
+  margin: 1px 0 0;
+  padding: 6px 12px 0;
+  opacity: 0;
+}
+.tab:first-child p {
+  opacity: 1;
+}
+.tab[visible=true] p {
+  opacity: 1;
+}
+.tab[visible=false] p {
+  opacity: 0;
+}

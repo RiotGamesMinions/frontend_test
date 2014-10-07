@@ -103,3 +103,54 @@ figure {
 		animation-delay: ($i - 1) * 6s;
 	}
 }
+#container {
+	&:before, &:after {
+		content: '';
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+.tab {
+	max-width: 60%;
+	position: relative;
+	h3 {
+		border: 1px solid #444;
+		color: #444;
+		cursor: pointer;
+		float: left;
+		margin: 0;
+		padding: 3px 8px;
+		&:hover, &.active {
+			border: 2px solid #fff;
+			border-width: 2px 2px 0;
+			color: #fff;
+			margin-top: -1px;
+			padding: 3px 7px;
+		}
+	}
+	p {
+		border: 1px solid #555;
+		position: absolute;
+		margin: 1px 0 0;
+		padding: 6px 12px 0;
+		opacity: 0;
+	}
+	&:first-child {
+		p {
+			opacity: 1;
+		}
+	}
+	&[visible=true] {
+		p {
+			opacity: 1;
+		}
+	}
+	&[visible=false] {
+		p {
+			opacity: 0;
+		}
+	}
+
+}

@@ -39,24 +39,54 @@
 
 		<hr/>
 
-		<div id="container">
-			Turn this content into a tabbed container.
+		<div id="container" class="tab-container">
+			<p>Turn this content into a tabbed container.</p>
 
-			<h3>Tab 1</h3>
-			<p>
-				Gingerbread muffin gummies gingerbread macaroon. Lollipop candy applicake toffee faworki. Bear claw topping jelly toffee toffee powder tiramisu candy chupa chups. Chupa chups dragee icing applicake chupa chups dessert. Croissant jelly faworki marzipan tootsie roll marshmallow. Marshmallow toffee sweet roll fruitcake.
-			</p>
-
-			<h3>Tab 2</h3>
-			<p>
-				Chocolate faworki croissant brownie halvah macaroon gummi bears wypas. Chupa chups icing gummies pudding dessert carrot cake. Cupcake jelly beans sweet roll icing ice cream apple pie tootsie roll gummi bears marzipan. Brownie gummies chupa chups pie. Cupcake jujubes topping. 
-			</p>
-
-			<h3>Tab 3</h3>
-			<p>
-				Cheesecake jelly beans ice cream lollipop sweet pastry. Chupa chups dessert cheesecake sesame snaps. Cookie ice cream candy canes pastry cake muffin. Icing chocolate sweet gummi bears powder oat cake oat cake lemon drops.
-			</p>
+			<div class="tab" visible="true">
+				<h3 class="active">Tab 1</h3>
+				<p>
+					Gingerbread muffin gummies gingerbread macaroon. Lollipop candy applicake toffee faworki. Bear claw topping jelly toffee toffee powder tiramisu candy chupa chups. Chupa chups dragee icing applicake chupa chups dessert. Croissant jelly faworki marzipan tootsie roll marshmallow. Marshmallow toffee sweet roll fruitcake.
+				</p>
+			</div>
+			<div class="tab">
+				<h3>Tab 2</h3>
+				<p>
+					Chocolate faworki croissant brownie halvah macaroon gummi bears wypas. Chupa chups icing gummies pudding dessert carrot cake. Cupcake jelly beans sweet roll icing ice cream apple pie tootsie roll gummi bears marzipan. Brownie gummies chupa chups pie. Cupcake jujubes topping. 
+				</p>
+			</div>
+			<div class="tab">
+				<h3>Tab 3</h3>
+				<p>
+					Cheesecake jelly beans ice cream lollipop sweet pastry. Chupa chups dessert cheesecake sesame snaps. Cookie ice cream candy canes pastry cake muffin. Icing chocolate sweet gummi bears powder oat cake oat cake lemon drops.
+				</p>
+			</div>
 		</div>
 	</div>
+	<script>
+		var tabsContainer = document.querySelector('.tab-container');
+		var tabs = document.querySelectorAll('.tab');
+		var tabsHeight = 0;
+		for( var i = 0; i < tabs.length; i++ ) {
+			var tabHeight = tabs[i].querySelector('p').clientHeight;
+			var buttonHeight = tabs[i].querySelector('h3').clientHeight;
+			if ( tabsHeight < tabHeight ) {
+				tabsHeight = tabHeight;
+			}
+			tabs[i].querySelector('h3').addEventListener( 'click', function() {
+				for( j = 0; j < tabs.length; j++ ) {
+					tabs[j].querySelector('h3').className = '';
+					tabs[j].setAttribute( 'visible', 'false' );
+				}
+				this.className = 'active';
+				this.parentElement.setAttribute( 'visible', 'true' );
+			})
+		}
+		for( var i = 0; i < tabs.length; i++ ) {
+			tabs[i].querySelector('p').style.height = tabsHeight + 'px';
+			tabs[i].querySelector('p').style.top = buttonHeight + 'px';
+		}
+
+		tabsContainer.style.height = (tabsContainer.clientHeight + tabsHeight) + 'px';
+	</script>
 </body>
 </html>
