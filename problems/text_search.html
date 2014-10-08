@@ -28,12 +28,12 @@
 
 	<h2>Search</h2>
 	<form>
-		<input type="text" id="search_input" value="llama" />
+		<input type="text" id="search_input" value="Testudines" />
 		<input type="submit" value="Search" />
 	</form>
 
 	<h3>Results</h3>
-	Found 0 occurances of the word "llama" in the below text.
+	Found <span id="results-count"></span> occurances of the word or phrase "<span id="search-query"></span>" in the below text.
 
 	<hr/>
 
@@ -53,6 +53,32 @@
 		</p>
 	</div>
 </div>
+<script>
+	function searchText() {
+		var string = document.querySelector('#search_input').value;
 
+		document.querySelector('#search-query').innerHTML = string;
+
+		var search = document.querySelector('#search_text');
+
+		search = search.innerHTML;
+		var cleanSearch = search.replace(/<(?:.|\n)*?>/gm, '');
+		cleanSearch = cleanSearch.toLowerCase();
+		var query = new RegExp(string, 'g');
+		if( string != '' ) {
+			var result = cleanSearch.match( query );
+		}
+
+		if( !result )
+			result = '';
+
+		document.querySelector('#results-count').innerHTML = result.length;
+	}
+	searchText();
+	document.querySelector('form').addEventListener( 'submit', function() {
+		searchText();
+	})
+
+</script>
 </body>
 </html>
