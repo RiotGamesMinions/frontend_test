@@ -1,64 +1,180 @@
 body {
-	background: #000 url(../img/bg_final.jpg) no-repeat center top;
-	margin: 0;
-	padding: 0;
-	font-family: Arial,sans-serif;
-	font-size: 15px;
-	color: #CCC;
+  background: black url(../img/bg_final.jpg) no-repeat center top;
+  margin: 0;
+  padding: 0;
+  font-family: Arial,sans-serif;
+  font-size: 15px;
+  color: #CCC;
 }
 
 a, a:visited {
-	color: #EE2E24;
-	text-decoration: none;
+  color: #EE2E24;
+  text-decoration: none;
 }
 
 #headwrap {
-	background: #000 url(../img/bg-header.jpg) no-repeat center top;
-	width: 100%;
-	margin-bottom: 30px;
+  background: black url(../img/bg-header.jpg) no-repeat center top;
+  width: 100%;
+  margin-bottom: 30px;
 }
 
 .head {
-	background: url(../img/bg-nav.jpg) no-repeat center;
-	height: 112px;
-	text-align: center;
-	margin: 0 auto;
-	width: 1000px;
+  background: url(../img/bg-nav.jpg) no-repeat center;
+  height: 112px;
+  text-align: center;
+  margin: 0 auto;
+  width: 1000px;
 }
 
 .logo {
-	background: url(../img/logo.jpg) no-repeat;
-	height: 112px;
-	overflow: hidden;
-	text-indent: 100%;
-	white-space: nowrap;
-	width: 200px;
-	margin: 0 auto;
+  background: url(../img/logo.jpg) no-repeat;
+  height: 112px;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  width: 200px;
+  margin: 0 auto;
 }
 
 #content {
-	background-color: #131313;
-	box-shadow: 0px 16px 20px 6px #000000;
-	-moz-box-shadow: 0px 16px 20px 6px #000000;
-	-webkit-box-shadow: 0px 16px 20px 6px #000000;
-	filter: progid:DXImageTransform.Microsoft.Shadow(strength= 16,direction = 180,color = '#000000');
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(strength = 16,Direction = 180,Color = '#000000')";
-	margin: 0 auto 70px auto;
-	padding: 40px 0 0;
-	position: relative;
-	width: 1000px;
-	padding: 40px 25px;
+  background-color: #131313;
+  box-shadow: 0px 16px 20px 6px #000000;
+  -moz-box-shadow: 0px 16px 20px 6px #000000;
+  -webkit-box-shadow: 0px 16px 20px 6px #000000;
+  filter: progid:DXImageTransform.Microsoft.Shadow(strength= 16,direction = 180,color = '#000000');
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(strength = 16,Direction = 180,Color = '#000000')";
+  margin: 0 auto 70px auto;
+  padding: 40px 0 0;
+  position: relative;
+  width: 1000px;
+  padding: 40px 25px;
 }
 
 h1 {
-	font-family: Arial,sans-serif;
-	letter-spacing: -6px;
-	font-size: 72px;
-	line-height: 58px;
-	margin: 0 0 18px;
-	color: #fff;
+  font-family: Arial,sans-serif;
+  letter-spacing: -6px;
+  font-size: 72px;
+  line-height: 58px;
+  margin: 0 0 18px;
+  color: #fff;
 }
 
 span.red {
-	color: #DC291E;
+  color: #DC291E;
+}
+
+/* Rotator */
+#rotator {
+  border: none !important;
+  position: relative;
+  background: #101010 !important;
+  text-align: none !important;
+  height: 345px !important;
+}
+
+figure {
+  -webkit-animation: slide 24s infinite;
+  animation: slide 24s infinite;
+  margin: 0;
+  max-width: 100%;
+  opacity: 0;
+  position: absolute;
+}
+figure figcaption {
+  padding: 10px 10px 0;
+}
+figure h4 {
+  margin: 0 0 5px;
+  text-align: left;
+}
+figure p {
+  margin: 5px 0;
+  text-align: left;
+  height: 40px;
+}
+figure img {
+  vertical-align: bottom;
+}
+
+@-webkit-keyframes slide {
+  18% {
+    opacity: 1;
+  }
+
+  36% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide {
+  18% {
+    opacity: 1;
+  }
+
+  36% {
+    opacity: 0;
+  }
+}
+figure:nth-child(4) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+figure:nth-child(3) {
+  -webkit-animation-delay: 6s;
+  animation-delay: 6s;
+}
+
+figure:nth-child(2) {
+  -webkit-animation-delay: 12s;
+  animation-delay: 12s;
+}
+
+figure:nth-child(1) {
+  -webkit-animation-delay: 18s;
+  animation-delay: 18s;
+}
+
+#container:before, #container:after {
+  content: '';
+  display: table;
+}
+#container:after {
+  clear: both;
+}
+
+.tab {
+  max-width: 60%;
+  position: relative;
+}
+.tab h3 {
+  border: 1px solid #444;
+  color: #444;
+  cursor: pointer;
+  float: left;
+  margin: 0;
+  padding: 3px 8px;
+}
+.tab h3:hover, .tab h3.active {
+  border: 2px solid #fff;
+  border-width: 2px 2px 0;
+  color: #fff;
+  margin-top: -1px;
+  padding: 3px 7px;
+}
+.tab p {
+  border: 1px solid #555;
+  position: absolute;
+  margin: 1px 0 0;
+  padding: 6px 12px 0;
+  opacity: 0;
+}
+.tab:first-child p {
+  opacity: 1;
+}
+.tab[visible=true] p {
+  opacity: 1;
+}
+.tab[visible=false] p {
+  opacity: 0;
 }

@@ -28,12 +28,12 @@
 
 	<h2>Search</h2>
 	<form>
-		<input type="text" id="search_input" value="llama" />
+		<input type="text" id="search_input" value="Testudines" />
 		<input type="submit" value="Search" />
 	</form>
 
 	<h3>Results</h3>
-	Found 0 occurances of the word "llama" in the below text.
+	Found <span id="results-count"></span> occurances of the word or phrase "<span id="search-query"></span>" in the below text.
 
 	<hr/>
 
@@ -53,6 +53,120 @@
 		</p>
 	</div>
 </div>
+<script>
+	'use strict'
 
+	// Utilities
+	var Util = {
+		defaults: function( obj ) {
+			if ( !typeof obj !== 'object' ) return obj;
+			var i, prop, source;
+			for ( i = 1; i < arguments.length; i++ ) {
+				source = arguments[i];
+				for ( prop in source ) {
+					if ( obj[prop] === void(0) )
+						obj[prop] = source[prop];
+				}
+			}
+			return obj;
+		}
+	}
+
+	// SearchText Plugin
+	var SearchableText = ( function() {
+		var SearchableText = function( opts ) {
+			opts = Util.defaults( opts, {
+				searchableText: '',
+			});
+
+			this.searchableText = this.normalizeText( opts.searchableText );
+		};
+
+		SearchableText.prototype.normalizeText = function( text, ignore ) {
+			// Remove HTML
+			text = text.replace( /<(?:.|\n)*?>/gm, '' );
+
+			// Could remove extra space between words
+			// Trim
+			text = text.trim();
+
+			// Lowercase
+			text = text.toLowerCase()
+
+			// Remove cite notes
+			text = text.replace( /\[[0-9]+\]/g, '' );
+
+			return text;
+		};
+
+		/**
+		 * Search for a string in our normalized text
+		 *
+		 * @param  {String} searchString
+		 * @return {Integer} A count of the occurances of the string in our searchableText
+		 **/
+		SearchableText.prototype.searchForTerm = function( searchString ) {
+			if ( !this.searchableText ) {
+				return 0;
+			}
+
+			searchString = searchString.toLowerCase().trim();
+			var searchQuery = new RegExp( searchString, 'g' );
+
+			if( searchString != '' ) {
+				var matches = this.searchableText.match( searchQuery );
+				if( matches )
+					return matches.length;
+				else {
+					return 0;
+				}
+			} else {
+				return 0;
+			}
+		};
+
+		return SearchableText;
+	})();
+
+	var SearchableView = ( function() {
+		var SearchableView = function() {
+			this.searchInputEl = document.querySelector( '#search_input' );
+			this.resultsCountEl = document.querySelector( '#results-count' );
+			this.searchStringEl = document.querySelector( '#search-query' );
+
+			this.search = new SearchableText({
+				searchableText: document.querySelector( '#search_text').innerHTML
+			});
+
+			// Event listeners
+			document.querySelector( 'form' ).addEventListener( 'submit', this.handleFormSubmission.bind( this ) );
+		};
+
+		SearchableView.prototype.handleFormSubmission = function( e ) {
+			e.preventDefault();
+			this.runSearch();
+		};
+
+		SearchableView.prototype.runSearch = function() {
+			var resultCount = this.search.searchForTerm( this.searchInputEl.value );
+			this.render( resultCount );
+		};
+
+		SearchableView.prototype.render = function( resultCount ) {
+			this.resultsCountEl.innerHTML = resultCount;
+			this.searchStringEl.innerHTML = this.searchInputEl.value;
+		};
+
+		return SearchableView;
+	})();
+
+	window.onload = function() {
+		var searchView = new SearchableView();
+
+		// Update view with initial search term
+		searchView.runSearch();
+	};
+
+</script>
 </body>
 </html>
